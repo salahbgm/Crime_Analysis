@@ -460,7 +460,12 @@ def plot_and_predict_incident_rates(df, department, feature='faits'):
     model.fit(X, y)
     future_years = np.array([[23], [24]])
     predictions = model.predict(future_years)
-    adjusted_predictions = predictions + 1000
+
+    # Calculer la moyenne des faits pour le département sélectionné
+    mean_faits = df_department[feature].mean()
+    
+    # Ajuster les prédictions
+    adjusted_predictions = predictions + mean_faits
 
     plt.figure(figsize=(10, 6))
     plt.bar(df_department['annee'], df_department[feature], color='blue', label='Historical Data')
@@ -470,6 +475,7 @@ def plot_and_predict_incident_rates(df, department, feature='faits'):
     plt.title(f'{feature} by Year for Department {department}')
     plt.legend()
     plt.show()
+
 
 
 
