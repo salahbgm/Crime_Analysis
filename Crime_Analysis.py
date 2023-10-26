@@ -84,6 +84,27 @@ df_gouv = loadCSV()
 st.divider()
 
 
+def clean_and_prepare_df(df):
+    
+    # Convert 'LOG' and 'tauxpourmille' to numerical data types if they are not already
+    if df['LOG'].dtype == 'object':
+        df['LOG'] = df['LOG'].str.replace(',', '.').astype(float)
+    if df['tauxpourmille'].dtype == 'object':
+        df['tauxpourmille'] = df['tauxpourmille'].str.replace(',', '.').astype(float)
+    
+    # Correct the 'annee' column (this is just an example, adjust according to your dataset)
+    df['annee'] = df['annee'] + 2000  # Assuming that '16' should be '2016', '17' should be '2017', etc.
+    
+    return df
+
+# Usage example:
+df_gouv = clean_and_prepare_df(df_gouv.copy())
+
+
+
+
+
+
 @st.cache_data
 def display_unique_crime_types(df_gouv):
     st.markdown('## All listed facts')
