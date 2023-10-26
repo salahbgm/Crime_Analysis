@@ -89,14 +89,12 @@ st.divider()
 
 
 @st.cache_data
-st.markdown('## All listed facts')
 def display_unique_crime_types(df_gouv):
+    st.markdown('## All listed facts')
     # Let's check the unique values in the "classe" column to understand the different types of crimes
     unique_crime_types = df_gouv['classe'].unique()
-
     # Count the number of unique crime types
     num_unique_crime_types = len(unique_crime_types)
-    
     # Utiliser Streamlit pour afficher les types uniques de crimes et leur nombre
     st.write("Unique types of crime : ", unique_crime_types)
     st.write("Number of unique crime types : ", num_unique_crime_types)
@@ -104,6 +102,11 @@ def display_unique_crime_types(df_gouv):
 if st.checkbox('Show unique crime types'):
     display_unique_crime_types(df_gouv)
 st.divider()
+
+
+
+
+
 
 @st.cache_data
 # histogramme representant le nombre de crime par an
