@@ -87,7 +87,7 @@ st.divider()
 
 
 
-
+@st.cache_data
 def display_unique_crime_types(df_gouv):
     st.markdown('## All listed facts')
     # Let's check the unique values in the "classe" column to understand the different types of crimes
@@ -199,7 +199,6 @@ def plot_crime_evolution_debug(df_gouv):
     print("Grouped DataFrame with percentage_change:")
     print(df_grouped.head())
     
-    # The rest of the original function code follows...
 
 
 
@@ -272,7 +271,7 @@ st.divider()
 
 
 
-
+@st.cache_data
 #carte de la france 
 def plot_crime_density(df_gouv, shapefile_path):
     st.markdown('## Crime density on the map of France ')
