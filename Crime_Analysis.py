@@ -434,7 +434,6 @@ st.divider()
 
 
 
-
 # regression lineaire pour predire les crime en 23-24
 def predict_incident_rates(df, department, feature='faits'):
     df_department = df[df['Code.département'] == department]
@@ -447,9 +446,7 @@ def predict_incident_rates(df, department, feature='faits'):
     model.fit(X, y)
     future_years = np.array([[23], [24]])
     predictions = model.predict(future_years)
-    mean_faits = df_department[feature].mean()
-    adjusted_predictions = predictions + mean_faits
-
+    adjusted_predictions = predictions + 1000
     return {'2023': adjusted_predictions[0], '2024': adjusted_predictions[1]}
 
 def plot_and_predict_incident_rates(df, department, feature='faits'):
@@ -463,22 +460,14 @@ def plot_and_predict_incident_rates(df, department, feature='faits'):
     model.fit(X, y)
     future_years = np.array([[23], [24]])
     predictions = model.predict(future_years)
-
-    # Calculer la moyenne des faits pour le département sélectionné
-    mean_faits = df_department[feature].mean()
-    
-    # Ajuster les prédictions
-    adjusted_predictions = predictions + mean_faits
-
     plt.figure(figsize=(10, 6))
     plt.bar(df_department['annee'], df_department[feature], color='blue', label='Historical Data')
-    plt.bar(future_years.flatten(), adjusted_predictions, color='orange', label='Predictions')
+    plt.bar(future_years.flatten(), predictions, color='orange', label='Predictions')
     plt.xlabel('Year')
     plt.ylabel(f'Number of {feature}')
     plt.title(f'{feature} by Year for Department {department}')
     plt.legend()
     plt.show()
-
 
 
 
