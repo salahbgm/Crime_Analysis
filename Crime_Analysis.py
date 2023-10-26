@@ -322,7 +322,7 @@ st.divider()
 
 
 def plot_crime_rate(df_gouv):
-    st.markdown('## Crime rate per 1,000 inhabitants per year for départements ')
+    st.markdown('## Crime rate per 1,000 inhabitants per year for departements ')
     # Convertir la colonne 'POP' en numérique
     df_gouv['POP'] = pd.to_numeric(df_gouv['POP'], errors='coerce')
 
