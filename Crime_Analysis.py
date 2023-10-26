@@ -460,16 +460,9 @@ def plot_and_predict_incident_rates(df, department, feature='faits'):
     model.fit(X, y)
     future_years = np.array([[23], [24]])
     predictions = model.predict(future_years)
-   # Récupère la dernière valeur enregistrée pour la feature donnée
-    last_recorded_value = df_department[feature].iloc[-1]
-
-# Ajuste les prédictions
-    adjusted_predictions = predictions + last_recorded_value
-
-# Plot
     plt.figure(figsize=(10, 6))
     plt.bar(df_department['annee'], df_department[feature], color='blue', label='Historical Data')
-    plt.bar(future_years.flatten(), adjusted_predictions, color='orange', label='Predictions')
+    plt.bar(future_years.flatten(), predictions, color='orange', label='Predictions')
     plt.xlabel('Year')
     plt.ylabel(f'Number of {feature}')
     plt.title(f'{feature} by Year for Department {department}')
