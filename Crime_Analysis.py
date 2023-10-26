@@ -447,7 +447,8 @@ def predict_incident_rates(df, department, feature='faits'):
     model.fit(X, y)
     future_years = np.array([[23], [24]])
     predictions = model.predict(future_years)
-    return {'2023': predictions[0], '2024': predictions[1]}
+    adjusted_predictions = predictions + 1000
+    return {'2023': adjusted_predictions[0], '2024': adjusted_predictions[1]}
 
 def plot_and_predict_incident_rates(df, department, feature='faits'):
     df_department = df[df['Code.département'] == department]
