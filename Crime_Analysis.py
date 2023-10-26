@@ -19,7 +19,7 @@ import logging
 
 # Configure logging
 logging.basicConfig(
-    filename='/Users/salahboughanmi/Desktop/Crime_Analysis/Crime_Analysis/DataVizPrj.log',  # Chemin complet ici
+    filename='DataVizPrj.log',  # Chemin complet ici
     filemode='a',  
     format='%(asctime)s - %(message)s',
     level=logging.INFO 
