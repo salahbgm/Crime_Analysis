@@ -273,7 +273,6 @@ st.divider()
 
 
 
-@st.cache_data
 #carte de la france 
 def plot_crime_density(df_gouv, shapefile_path):
     st.markdown('## Crime density on the map of France ')
