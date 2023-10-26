@@ -5,8 +5,4 @@ numpy
 seaborn
 matplotlib
 geopandas
-time
-matplotlib.widgets
 altair
-functools
-logging
