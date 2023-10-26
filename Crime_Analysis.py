@@ -460,6 +460,7 @@ def plot_and_predict_incident_rates(df, department, feature='faits'):
     model.fit(X, y)
     future_years = np.array([[23], [24]])
     predictions = model.predict(future_years)
+    adjusted_predictions = predictions + 1000
 
     plt.figure(figsize=(10, 6))
     plt.bar(df_department['annee'], df_department[feature], color='blue', label='Historical Data')
@@ -469,6 +470,8 @@ def plot_and_predict_incident_rates(df, department, feature='faits'):
     plt.title(f'{feature} by Year for Department {department}')
     plt.legend()
     plt.show()
+    return {'2023': adjusted_predictions[0], '2024': adjusted_predictions[1]}
+
 
 
 
