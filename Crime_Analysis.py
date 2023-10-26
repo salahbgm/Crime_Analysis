@@ -502,7 +502,7 @@ if st.button('Predict and Plot'):
 end_time = time.time()
 execution_time = end_time - start_time
 display_time()
-#st.write(f"Temps de chargement de l'application : {execution_time:.2f} secondes")
+st.write(f"Temps de chargement de l'application : {execution_time:.2f} secondes")
 
 
 st.divider()
