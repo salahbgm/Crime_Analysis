@@ -88,7 +88,6 @@ st.divider()
 
 
 
-@st.cache_data
 def display_unique_crime_types(df_gouv):
     st.markdown('## All listed facts')
     # Let's check the unique values in the "classe" column to understand the different types of crimes
