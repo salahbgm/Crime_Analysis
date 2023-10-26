@@ -99,8 +99,7 @@ def display_unique_crime_types(df_gouv):
     st.write("Unique types of crime : ", unique_crime_types)
     st.write("Number of unique crime types : ", num_unique_crime_types)
 
-if st.checkbox('Show unique crime types'):
-    display_unique_crime_types(df_gouv)
+display_unique_crime_types(df_gouv)
 st.divider()
 
 
