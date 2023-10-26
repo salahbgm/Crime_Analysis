@@ -500,7 +500,18 @@ if st.button('Predict and Plot'):
 
 
 end_time = time.time()
-execution_time = end_time - start_time
-display_time()
-st.write(f"Temps de chargement de l'application : {execution_time:.2f} secondes")
+#execution_time = end_time - start_time
+#display_time()
+#st.write(f"Temps de chargement de l'application : {execution_time:.2f} secondes")
 
+
+st.divider()
+
+st.sidebar.header("Personal information :")
+st.sidebar.write("BOUGHANMI")
+st.sidebar.write("SALAH")
+st.sidebar.write("2025")
+st.sidebar.write("DE-1")
+st.sidebar.write("GitHub : https://github.com/salahbgm")
+st.sidebar.write("LinkedIn : www.linkedin.com/in/salah-boughanmi")
+st.sidebar.write("#datavz2023efrei")
