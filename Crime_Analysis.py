@@ -158,35 +158,56 @@ st.divider()
 
 
 
-# Line chart avec des checkbox
-def plot_crime_evolution(df_gouv):
-    st.markdown('##  Percentage change in the number of different types of crime by year ')
-    # Filtrer le DataFrame original pour ne conserver que les colonnes 'annee', 'classe' et 'faits'
+
+
+
+
+
+
+# Debugged function
+def plot_crime_evolution_debug(df_gouv):
+    # Debug: Print or log the first few rows of df_gouv
+    print("Initial DataFrame:")
+    print(df_gouv.head())
+    
     df_filtered = df_gouv[['annee', 'classe', 'faits']]
-
-    # Regrouper par 'annee' et 'classe' et sommer 'faits' pour obtenir le nombre total de chaque type de crime pour chaque année
+    
     df_grouped = df_filtered.groupby(['annee', 'classe'])['faits'].sum().reset_index()
+    
+    # Debug: Check if df_grouped is empty
+    if df_grouped.empty:
+        print("Error: df_grouped is empty")
+        return
+    
+    # Debug: Print or log the first few rows of df_grouped
+    print("Grouped DataFrame:")
+    print(df_grouped.head())
+    
+    try:
+        # Handle edge cases where x.iloc[0] could be zero or NaN
+        df_grouped['percentage_change'] = df_grouped.groupby('classe')['faits'].apply(
+            lambda x: (x / x.iloc[0]) * 100 - 100 if x.iloc[0] != 0 and not pd.isna(x.iloc[0]) else 0
+        )
+    except Exception as e:
+        # Debug: Print or log the exception
+        print(f"Error occurred: {e}")
+        return
+    
+    # Debug: Print or log the first few rows of df_grouped after adding 'percentage_change'
+    print("Grouped DataFrame with percentage_change:")
+    print(df_grouped.head())
+    
+    # The rest of the original function code follows...
 
-    # Calculer le changement en pourcentage par rapport à la première année du dataset pour chaque classe de crime
-    df_grouped['percentage_change'] = df_grouped.groupby('classe')['faits'].apply(lambda x: (x / x.iloc[0]) * 100 - 100)
 
-    # Obtenir les types uniques de crimes pour créer des checkbox
-    unique_crime_types = df_gouv['classe'].unique()
 
-    # Créer des checkbox pour chaque type de crime
-    selected_crimes = st.multiselect('Select the types of crime you want to see:', unique_crime_types, key='select_crimes')
 
-    # Filtrer le DataFrame selon les crimes sélectionnés
-    df_grouped_filtered = df_grouped[df_grouped['classe'].isin(selected_crimes)]
 
-    # Pivoter le DataFrame pour que chaque colonne représente un type de crime et chaque ligne une année
-    df_pivot = df_grouped_filtered.pivot(index='annee', columns='classe', values='percentage_change')
 
-    # Utiliser Streamlit pour créer le graphique en ligne
-    st.line_chart(df_pivot)
 
-plot_crime_evolution(df_gouv)
-st.divider()
+
+
+
 
 
 
