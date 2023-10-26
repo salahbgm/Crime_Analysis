@@ -19,7 +19,7 @@ import logging
 
 # Configure logging
 logging.basicConfig(
-    filename='/Users/salahboughanmi/Desktop/projetViz/DataVizPrj.log',  # Chemin complet ici
+    filename='DataVizPrj.log',  # Chemin complet ici
     filemode='a',  
     format='%(asctime)s - %(message)s',
     level=logging.INFO 
@@ -73,7 +73,7 @@ def loadCSV ():
     # Read the  CSV file
     st.markdown("## Quick View of the dataframe")
     st.write('We convert the column annee and the column Code.département to string for better plotting')
-    df = pd.read_csv("/Users/salahboughanmi/Desktop/projetViz/donnee-dep-data.gouv-2022-geographie2023-produit-le2023-07-17_cleaned.csv", sep=';')
+    df = pd.read_csv("donnee-dep-data.gouv-2022-geographie2023-produit-le2023-07-17_cleaned.csv", sep=';')
     # Convert 'annee' and 'Code.département' to string for better plotting
     df['annee'] = df['annee'].astype(str)
     df['Code.département'] = df['Code.département'].astype(str)
@@ -281,7 +281,7 @@ def plot_crime_density(df_gouv, shapefile_path):
     plt.axis('off')
 
     st.pyplot(fig)
-shapefile_path = "/Users/salahboughanmi/Desktop/projetViz/departements-20180101.shp"
+shapefile_path = "departements-20180101.shp"
 
 plot_crime_density(df_gouv, shapefile_path)
 
